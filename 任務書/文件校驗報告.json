@@ -1,0 +1,924 @@
+{
+  "document_version": "v1.3",
+  "scope": "only Yuki-Mobile is written; Yuki and Yuki-Desktop are pinned read-only dependencies",
+  "document_date": "2026-11-17 America/Los_Angeles",
+  "validator": "python3 文件校驗.py --write",
+  "document_static_validation": "passed",
+  "errors": [],
+  "task_count": 27,
+  "tasks": {
+    "REPO-01": {
+      "repo": "Yuki-Mobile",
+      "direct": [],
+      "conditional": [],
+      "scenarios": [],
+      "acceptance": "repo-check"
+    },
+    "MOB-001": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "REPO-01"
+      ],
+      "conditional": [],
+      "scenarios": [],
+      "acceptance": "contract-check"
+    },
+    "QA-001": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "REPO-01"
+      ],
+      "conditional": [],
+      "scenarios": [],
+      "acceptance": "smoke"
+    },
+    "QA-002": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "REPO-01"
+      ],
+      "conditional": [],
+      "scenarios": [],
+      "acceptance": "fixture-tests"
+    },
+    "QA-003": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "QA-001",
+        "QA-002"
+      ],
+      "conditional": [],
+      "scenarios": [
+        1,
+        5,
+        10
+      ],
+      "acceptance": "A01、A05、A10 的桌面側（以 reference 替身手機自驗）"
+    },
+    "MOB-002": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "QA-001"
+      ],
+      "conditional": [],
+      "scenarios": [
+        11
+      ],
+      "acceptance": "A11（安裝、`/meta` 與 TLS）"
+    },
+    "MOB-003": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "MOB-001",
+        "MOB-002",
+        "QA-001",
+        "QA-002"
+      ],
+      "conditional": [],
+      "scenarios": [
+        2,
+        9
+      ],
+      "acceptance": "A02、A09"
+    },
+    "MOB-004": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "MOB-003"
+      ],
+      "conditional": [],
+      "scenarios": [
+        3,
+        4,
+        12
+      ],
+      "acceptance": "A03、A04、A12"
+    },
+    "MOB-005": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "MOB-003",
+        "QA-002"
+      ],
+      "conditional": [],
+      "scenarios": [
+        5,
+        6
+      ],
+      "acceptance": "A05、A06"
+    },
+    "MOB-006": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "MOB-004",
+        "MOB-005"
+      ],
+      "conditional": [],
+      "scenarios": [
+        6,
+        7,
+        8
+      ],
+      "acceptance": "A06、A07、A08"
+    },
+    "MOB-007": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "MOB-005"
+      ],
+      "conditional": [],
+      "scenarios": [
+        10
+      ],
+      "acceptance": "A10"
+    },
+    "MOB-008": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "MOB-006",
+        "MOB-007",
+        "QA-003"
+      ],
+      "conditional": [],
+      "scenarios": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "acceptance": "A01～A12"
+    },
+    "MOB-009": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "MOB-001",
+        "QA-001",
+        "QA-002"
+      ],
+      "conditional": [],
+      "scenarios": [
+        2,
+        9,
+        11
+      ],
+      "acceptance": "A02、A09、A11（安裝、`/meta` 與 TLS）"
+    },
+    "MOB-010": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "MOB-009",
+        "QA-002"
+      ],
+      "conditional": [],
+      "scenarios": [
+        3,
+        4,
+        5,
+        6,
+        12
+      ],
+      "acceptance": "A03、A04、A05、A06、A12"
+    },
+    "MOB-011": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "MOB-010"
+      ],
+      "conditional": [],
+      "scenarios": [
+        6,
+        7,
+        8
+      ],
+      "acceptance": "A06、A07、A08"
+    },
+    "MOB-012": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "MOB-010"
+      ],
+      "conditional": [],
+      "scenarios": [
+        10
+      ],
+      "acceptance": "A10"
+    },
+    "MOB-013": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "MOB-011",
+        "MOB-012",
+        "QA-003"
+      ],
+      "conditional": [],
+      "scenarios": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "acceptance": "A01～A12"
+    },
+    "DEV-002": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "REPO-01"
+      ],
+      "conditional": [],
+      "scenarios": [
+        16
+      ],
+      "acceptance": "A16"
+    },
+    "DEV-003": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "REPO-01"
+      ],
+      "conditional": [],
+      "scenarios": [
+        17
+      ],
+      "acceptance": "A17"
+    },
+    "DEV-008": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "QA-002"
+      ],
+      "conditional": [
+        "DEV-002",
+        "DEV-003"
+      ],
+      "scenarios": [
+        16,
+        17
+      ],
+      "acceptance": "A16、A17"
+    },
+    "DEV-009": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "DEV-002",
+        "DEV-008"
+      ],
+      "conditional": [],
+      "scenarios": [
+        16
+      ],
+      "acceptance": "A16"
+    },
+    "DEV-006": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "DEV-002",
+        "DEV-009"
+      ],
+      "conditional": [],
+      "scenarios": [
+        16
+      ],
+      "acceptance": "A16"
+    },
+    "DEV-007": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "DEV-003",
+        "DEV-008"
+      ],
+      "conditional": [],
+      "scenarios": [
+        17
+      ],
+      "acceptance": "A17"
+    },
+    "EXT-01": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "MOB-008",
+        "MOB-013"
+      ],
+      "conditional": [],
+      "scenarios": [
+        18
+      ],
+      "acceptance": "A18"
+    },
+    "EXT-02": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "MOB-008",
+        "MOB-013"
+      ],
+      "conditional": [],
+      "scenarios": [
+        9,
+        18
+      ],
+      "acceptance": "A09、A18"
+    },
+    "EXT-03": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "MOB-008",
+        "MOB-013"
+      ],
+      "conditional": [],
+      "scenarios": [
+        19
+      ],
+      "acceptance": "A19"
+    },
+    "EXT-04": {
+      "repo": "Yuki-Mobile",
+      "direct": [
+        "MOB-007",
+        "MOB-012"
+      ],
+      "conditional": [],
+      "scenarios": [
+        20
+      ],
+      "acceptance": "A20"
+    }
+  },
+  "scenario_count": 20,
+  "scenario_to_tasks": {
+    "A01": {
+      "active": [
+        "MOB-008",
+        "MOB-013",
+        "QA-003"
+      ],
+      "deferred": []
+    },
+    "A02": {
+      "active": [
+        "MOB-003",
+        "MOB-008",
+        "MOB-009",
+        "MOB-013"
+      ],
+      "deferred": []
+    },
+    "A03": {
+      "active": [
+        "MOB-004",
+        "MOB-008",
+        "MOB-010",
+        "MOB-013"
+      ],
+      "deferred": []
+    },
+    "A04": {
+      "active": [
+        "MOB-004",
+        "MOB-008",
+        "MOB-010",
+        "MOB-013"
+      ],
+      "deferred": [
+        "PUSH-02",
+        "PUSH-03"
+      ]
+    },
+    "A05": {
+      "active": [
+        "MOB-005",
+        "MOB-008",
+        "MOB-010",
+        "MOB-013",
+        "QA-003"
+      ],
+      "deferred": []
+    },
+    "A06": {
+      "active": [
+        "MOB-005",
+        "MOB-006",
+        "MOB-008",
+        "MOB-010",
+        "MOB-011",
+        "MOB-013"
+      ],
+      "deferred": []
+    },
+    "A07": {
+      "active": [
+        "MOB-006",
+        "MOB-008",
+        "MOB-011",
+        "MOB-013"
+      ],
+      "deferred": []
+    },
+    "A08": {
+      "active": [
+        "MOB-006",
+        "MOB-008",
+        "MOB-011",
+        "MOB-013"
+      ],
+      "deferred": []
+    },
+    "A09": {
+      "active": [
+        "EXT-02",
+        "MOB-003",
+        "MOB-008",
+        "MOB-009",
+        "MOB-013"
+      ],
+      "deferred": []
+    },
+    "A10": {
+      "active": [
+        "MOB-007",
+        "MOB-008",
+        "MOB-012",
+        "MOB-013",
+        "QA-003"
+      ],
+      "deferred": []
+    },
+    "A11": {
+      "active": [
+        "MOB-002",
+        "MOB-008",
+        "MOB-009",
+        "MOB-013"
+      ],
+      "deferred": []
+    },
+    "A12": {
+      "active": [
+        "MOB-004",
+        "MOB-008",
+        "MOB-010",
+        "MOB-013"
+      ],
+      "deferred": []
+    },
+    "A13": {
+      "active": [],
+      "deferred": [
+        "PUSH-01",
+        "PUSH-02",
+        "PUSH-03"
+      ]
+    },
+    "A14": {
+      "active": [],
+      "deferred": [
+        "DEV-001",
+        "DEV-004",
+        "DEV-005"
+      ]
+    },
+    "A15": {
+      "active": [],
+      "deferred": [
+        "DEV-004",
+        "DEV-005"
+      ]
+    },
+    "A16": {
+      "active": [
+        "DEV-002",
+        "DEV-006",
+        "DEV-008",
+        "DEV-009"
+      ],
+      "deferred": []
+    },
+    "A17": {
+      "active": [
+        "DEV-003",
+        "DEV-007",
+        "DEV-008"
+      ],
+      "deferred": []
+    },
+    "A18": {
+      "active": [
+        "EXT-01",
+        "EXT-02"
+      ],
+      "deferred": []
+    },
+    "A19": {
+      "active": [
+        "EXT-03"
+      ],
+      "deferred": []
+    },
+    "A20": {
+      "active": [
+        "EXT-04"
+      ],
+      "deferred": []
+    }
+  },
+  "contract_rows": [
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "C05",
+    "C06",
+    "C07",
+    "C08",
+    "C09",
+    "C10",
+    "C11",
+    "C12",
+    "C13",
+    "C14"
+  ],
+  "dependency_ids": "all_defined",
+  "mandatory_dependency_graph": "acyclic",
+  "topological_order": [
+    "REPO-01",
+    "DEV-002",
+    "DEV-003",
+    "QA-002",
+    "DEV-008",
+    "DEV-009",
+    "DEV-006",
+    "DEV-007",
+    "MOB-001",
+    "QA-001",
+    "MOB-002",
+    "MOB-003",
+    "MOB-004",
+    "MOB-005",
+    "MOB-006",
+    "MOB-007",
+    "QA-003",
+    "MOB-008",
+    "MOB-009",
+    "MOB-010",
+    "MOB-011",
+    "MOB-012",
+    "MOB-013",
+    "EXT-01",
+    "EXT-02",
+    "EXT-03",
+    "EXT-04"
+  ],
+  "conditional_prerequisites": {
+    "DEV-008": [
+      "DEV-002",
+      "DEV-003"
+    ]
+  },
+  "deferred_cards": {
+    "DEV-001": {
+      "needs_repo_change": "無（純手機實驗，可隨時做）",
+      "prerequisites_when_enabled": [
+        "REPO-01"
+      ],
+      "scenarios": [
+        14
+      ]
+    },
+    "DEV-004": {
+      "needs_repo_change": "Yuki",
+      "prerequisites_when_enabled": [
+        "DEV-001",
+        "DEV-003"
+      ],
+      "scenarios": [
+        14,
+        15
+      ]
+    },
+    "DEV-005": {
+      "needs_repo_change": "Yuki-Mobile",
+      "prerequisites_when_enabled": [
+        "DEV-001",
+        "DEV-004",
+        "DEV-009"
+      ],
+      "scenarios": [
+        14,
+        15
+      ]
+    },
+    "PUSH-01": {
+      "needs_repo_change": "Yuki",
+      "prerequisites_when_enabled": [],
+      "scenarios": [
+        13
+      ]
+    },
+    "PUSH-02": {
+      "needs_repo_change": "Yuki-Mobile",
+      "prerequisites_when_enabled": [
+        "MOB-006",
+        "PUSH-01"
+      ],
+      "scenarios": [
+        4,
+        13
+      ]
+    },
+    "PUSH-03": {
+      "needs_repo_change": "Yuki-Mobile",
+      "prerequisites_when_enabled": [
+        "MOB-011",
+        "PUSH-01"
+      ],
+      "scenarios": [
+        4,
+        13
+      ]
+    }
+  },
+  "deferred_conditional_prerequisites": {
+    "DEV-004": [
+      "DEV-001",
+      "DEV-003"
+    ]
+  },
+  "retired_ids": [
+    "BE-001",
+    "DESK-01"
+  ],
+  "releases": {
+    "R-A": {
+      "candidate": "MOB-008",
+      "mandatory_closure": [
+        "MOB-001",
+        "MOB-002",
+        "MOB-003",
+        "MOB-004",
+        "MOB-005",
+        "MOB-006",
+        "MOB-007",
+        "QA-001",
+        "QA-002",
+        "QA-003",
+        "REPO-01"
+      ],
+      "conditional_cards_in_closure": {},
+      "forbidden_found": []
+    },
+    "R-I": {
+      "candidate": "MOB-013",
+      "mandatory_closure": [
+        "MOB-001",
+        "MOB-009",
+        "MOB-010",
+        "MOB-011",
+        "MOB-012",
+        "QA-001",
+        "QA-002",
+        "QA-003",
+        "REPO-01"
+      ],
+      "conditional_cards_in_closure": {},
+      "forbidden_found": []
+    },
+    "R-D2": {
+      "candidate": "DEV-006",
+      "mandatory_closure": [
+        "DEV-002",
+        "DEV-008",
+        "DEV-009",
+        "QA-002",
+        "REPO-01"
+      ],
+      "conditional_cards_in_closure": {
+        "DEV-008": [
+          "DEV-002",
+          "DEV-003"
+        ]
+      },
+      "forbidden_found": []
+    },
+    "R-DI": {
+      "candidate": "DEV-007",
+      "mandatory_closure": [
+        "DEV-003",
+        "DEV-008",
+        "QA-002",
+        "REPO-01"
+      ],
+      "conditional_cards_in_closure": {
+        "DEV-008": [
+          "DEV-002",
+          "DEV-003"
+        ]
+      },
+      "forbidden_found": []
+    }
+  },
+  "independent_releases": {
+    "android_core_without_ios_push_or_operator": true,
+    "ios_core_without_android_push_or_operator": true
+  },
+  "files": {
+    "Yuki-手機端總任務書-v1.3.md": {
+      "bytes": 28236,
+      "fences": "balanced",
+      "local_links": 4,
+      "local_links_valid": true,
+      "reference_links_defined": true,
+      "sha256": "2cec6d3247a9e0c5136a6b7ba406f419c249ca4c400e1253400bfc1a784c1819"
+    },
+    "手機端提交級任務書.md": {
+      "bytes": 73314,
+      "fences": "balanced",
+      "local_links": 12,
+      "local_links_valid": true,
+      "reference_links_defined": true,
+      "sha256": "079ea9ce21e9bf24f867725c69ac58f79b40ca1499c54c6f885bbc4c33274047"
+    },
+    "跨端介面與驗收矩陣.md": {
+      "bytes": 32807,
+      "fences": "balanced",
+      "local_links": 0,
+      "local_links_valid": true,
+      "reference_links_defined": true,
+      "sha256": "4a3bbc0bab51eec633616db81573274a822109337e8ead6d917fba2b1a5febbd"
+    },
+    "平台調研與分發裁決.md": {
+      "bytes": 22727,
+      "fences": "balanced",
+      "local_links": 0,
+      "local_links_valid": true,
+      "reference_links_defined": true,
+      "sha256": "9d29934c4859fad9d1707e3835b74cce33e5824deda2eb2dad0e4b98faf4f295"
+    }
+  },
+  "fixed_sources": {
+    "yuki_commit": "08164f6732c14fca0396eb3411f8a82d6762aa8c",
+    "desktop_commit": "a5687a66cf74485c94394e1008ddfbc0ebd926a2",
+    "mika_commit": "10b5712e30d6d10ace588bac08a1aad0fc6057ce",
+    "poki_commit": "2743a6b62bdb346a9bb1c1ee51c37ae0c5cd61d0",
+    "openapi_sha_prefix": "14fd970b"
+  },
+  "execution_evidence_2026_11_15": {
+    "repository_state": {
+      "Yuki": {
+        "local_head": "08164f6732c14fca0396eb3411f8a82d6762aa8c",
+        "remote_main": "08164f6732c14fca0396eb3411f8a82d6762aa8c",
+        "method": "git rev-parse HEAD; git ls-remote origin refs/heads/main"
+      },
+      "Yuki-Desktop": {
+        "local_head": "a5687a66cf74485c94394e1008ddfbc0ebd926a2",
+        "remote_main": "a5687a66cf74485c94394e1008ddfbc0ebd926a2"
+      },
+      "Mika": {
+        "pinned": "10b5712e30d6d10ace588bac08a1aad0fc6057ce",
+        "remote_main": "eb10b349f86654125e0db5325714e410b5431054",
+        "note": "main moved; this round read only the pinned commit"
+      },
+      "Poki": {
+        "pinned": "2743a6b62bdb346a9bb1c1ee51c37ae0c5cd61d0",
+        "remote_main": "2743a6b62bdb346a9bb1c1ee51c37ae0c5cd61d0"
+      }
+    },
+    "openapi_export": {
+      "command": "UV_PROJECT_ENVIRONMENT=<outside-repo> uv sync --frozen --python 3.12; <venv>/bin/python -c 'from yuki.client_api.openapi import export_openapi; export_openapi(Path(OUT))' (same function as `yuki client openapi --output`)",
+      "result_sha256": "14fd970b86a2ef393e1abec1aaae3aa56961304875af35454b000b2e8b98c101",
+      "desktop_contract_sha256": "14fd970b86a2ef393e1abec1aaae3aa56961304875af35454b000b2e8b98c101",
+      "desktop_contract_source_commit": "df133fbcb638c508041554a083c42c9aaee390b1",
+      "identical": true,
+      "api_revision": 12,
+      "paths": 56
+    },
+    "backend_tests": {
+      "command": "<venv>/bin/python -m pytest -p no:cacheprovider -q -m 'not native_worker' tests/integration/test_client_continuation.py tests/integration/test_client_person_identity.py tests/integration/test_desktop_work_scenario_fixture.py tests/unit/test_desktop_fault_fixture.py",
+      "collected": 31,
+      "passed": 31,
+      "exit_code": 0,
+      "duration_seconds": 57.77,
+      "environment": "macOS, Python 3.12, uv --frozen --extra dev; venv and basetemp outside the repository"
+    },
+    "upstream_reads": {
+      "method": "git init + git fetch --depth 1 origin <pinned sha> into a scratch directory; read only, no script or build executed",
+      "Mika_paths": [
+        "README.md",
+        "app/build.gradle.kts",
+        "app/src/main/AndroidManifest.xml",
+        "app/src/main/res/xml/accessibility_service.xml",
+        "app/src/main/java/com/wangzan101/mika/cap/phone/shell/ShellService.kt",
+        "app/src/main/java/com/wangzan101/mika/cap/phone/a11y/",
+        "app/src/main/java/com/wangzan101/mika/takeover/Takeover.kt",
+        "NOTICE",
+        "licenses/THIRD_PARTY_NOTICES.md"
+      ],
+      "Poki_paths": [
+        "README.md",
+        "docs/verification.md",
+        "docs/ios-core.md",
+        "docs/physical-iphone.md",
+        "native/ios-app/project.yml",
+        "native/ios-app/project-external.yml",
+        "THIRD_PARTY_NOTICES.md",
+        "native/LICENSE.idb",
+        "LICENSE"
+      ]
+    },
+    "not_executed": [
+      "Android or iOS build",
+      "Yuki-Desktop unit or Playwright tests",
+      "any real-device or simulator run",
+      "re-reading Google Play or Apple policy pages (v1.0 reading kept, marked provisional)"
+    ],
+    "runtime_tests": {
+      "A01": "not_run",
+      "A02": "not_run",
+      "A03": "not_run",
+      "A04": "not_run",
+      "A05": "not_run",
+      "A06": "not_run",
+      "A07": "not_run",
+      "A08": "not_run",
+      "A09": "not_run",
+      "A10": "not_run",
+      "A11": "not_run",
+      "A12": "not_run",
+      "A13": "not_run",
+      "A14": "not_run",
+      "A15": "not_run",
+      "A16": "not_run",
+      "A17": "not_run",
+      "A18": "not_run",
+      "A19": "not_run",
+      "A20": "not_run"
+    },
+    "repository_changes": "CORRECTED in v1.3: uv sync installed Yuki in editable mode and hatch_build.py compiled gitignored native.o and vec1.dylib into Yuki src/yuki/_native/ (created 2026-11-15 20:59 local); git status did not show them. Removed during the v1.3 revision. Yuki-Desktop: no writes. The untracked src/qq_ai_bot/ in Yuki predates this round (mtime 2026-11-03)",
+    "branches_created": [],
+    "commits_created": []
+  },
+  "v1_2_revision": {
+    "scope_change": "only Yuki-Mobile is written; BE-001 -> QA-002, DESK-01 -> QA-003, DEV-008 became a black-box test in Yuki-Mobile, new REPO-01 and DEV-009; DEV-001/004/005 and PUSH-01..03 deferred",
+    "feasibility_reads": [
+      "Yuki tests/support/soul_reference_server.py:76-90,170-255,284,320-343 (container, scripted model, client/agents routers, DesktopFaultFixture.attach)",
+      "Yuki tests/support/desktop_reference_server.py:112-211 (publish_artifact, seed_work)",
+      "Yuki tests/support/person_merge.py:11 (merge_persons)",
+      "Yuki LICENSE and Yuki-Desktop LICENSE: AGPL-3.0-only"
+    ],
+    "new_runtime_execution": "none; the v1.1 execution evidence above is unchanged",
+    "validator_negative_tests": {
+      "active card depends on deferred card": "failed as expected",
+      "active card assigned to Yuki": "failed as expected",
+      "release closure table differs from computed closure": "failed as expected",
+      "link to superseded master": "failed as expected",
+      "undefined dependency, dependency cycle, broken anchor, Android core depending on iOS (v1.1 run)": "failed as expected"
+    },
+    "yuki_and_desktop_git_status_after_revision": "unchanged"
+  },
+  "v1_3_revision": {
+    "source": "review comments on v1.2, each re-checked against the pinned Yuki source before editing",
+    "fixes": [
+      "QA-003 no longer waits for a phone card: before/phone/after phases, phone phase self-verified with the reference client; A01 is judged only on MOB-008/MOB-013",
+      "A01 arms work-scenario-artifact before the desktop sends the message",
+      "A08 uses a new QA-002 route __test/qq-group-work; owner input accepted, nonowner rejected, delivery stays in the original group; real QQ group run is separate evidence",
+      "A09 split: revoked device -> GET /me 401; superuser demotion -> GET /me 200 with is_superuser false and restricted cache cleared",
+      "QA-001 adds a fixed-hostname, publicly trusted HTTPS test entrance reachable on Wi-Fi and cellular; MOB-002/MOB-009 verify /meta on a real device on both networks with release trust settings",
+      "MOB-008 split into /1 (milestone M1: Android A01 on a debug build) and /2 (release candidate A01..A12)"
+    ],
+    "source_reads": [
+      "Yuki tests/support/desktop_fault_fixture.py:317-334 (work-scenario records after_event_id at arm time)",
+      "Yuki tests/support/desktop_reference_server.py:76-110 (seed_qq_entry creates a private-chat event only)",
+      "Yuki tests/support/soul_reference_server.py:356-360,422-429 (__test/qq-entry, __test/superuser)",
+      "Yuki tests/integration/test_client_continuation.py:236-330 and test_current_material_main_contract.py:80-120 (group entry via enabled_groups_csv, message:group:normal, processor.handle)",
+      "Yuki src/yuki/client_api/identity.py:465-492 (/me projects is_superuser from the current person)",
+      "Yuki src/yuki/container.py:574 (container exposes processor)"
+    ],
+    "not_verified": "HTTPS test entrance options (Tailscale Serve, own domain + tunnel) and the iOS single-active-VPN limit were not tried on a device",
+    "new_runtime_execution": "none",
+    "yuki_worktree_cleanup": "removed src/yuki/_native/ (native.o, vec1.dylib) created by the v1.1 uv sync; afterwards find -newermt <session start> outside .git is empty and git status --porcelain shows only the pre-existing src/qq_ai_bot/",
+    "test_root_rule": "YUKI_BACKEND_TEST_ROOT is now a git-archive export outside the worktree; checks use git status --porcelain --ignored",
+    "yuki_and_desktop_git_status_after_revision": "unchanged (tracked and untracked; ignored build outputs removed)"
+  },
+  "v1_3_follow_up": {
+    "date": "2026-11-17 America/Los_Angeles",
+    "scope": "A01 handoff facts, A08 and A09 fixtures, Android M1, signed-candidate network evidence, and the public GitHub repository decision",
+    "source_reads": [
+      "Yuki src/yuki/client_api/prompts.py:162-184, works.py:421-428 and identity.py:328-380 (trigger receipt, device and issuing binding)",
+      "Yuki tests/support/soul_reference_server.py:422-429 and tests/integration/test_client_person_identity.py:389-400 (demotion and source disable)"
+    ],
+    "new_runtime_execution": "none; the document and source checks do not execute the mobile acceptance cases"
+  }
+}

@@ -2,7 +2,7 @@
 
 ## 候選包
 
-Android 候選 APK 用本人金鑰在本機簽名，可附到 GitHub Releases。iPhone 候選包用 Xcode 安裝到本人裝置，GitHub Releases 只附經審核的證據。簽名材料留在本機。
+Android 候選 APK 用本人金鑰在本機簽名，可附到 GitHub Releases。簽名材料留在本機。
 
 基本版候選包以實際要交付的同一份已簽名 release 包重跑 Wi-Fi 與行動網路的 `env-check`，再跑 A01～A12。比對各次證據的 build SHA-256，確認必過案例皆為 `passed`。
 
@@ -38,7 +38,32 @@ python3 tools/redact_evidence.py --self-test
 
 掃描器讀取 Git 暫存區的檔名和 blob，檢查被強制加入的 AppleDouble、`.DS_Store`、簽名檔、私密設定與本機驗收輸出。內容規則辨識有值的裝置 token、配對碼、私鑰標頭和常見 Authorization 驗證標頭。檢出時只回報規則與安全的相對路徑。`acceptance/out/repo-check.json` 記錄結果，結束碼為 `0` 通過、`1` 檢出、`2` 掃描或寫報告失敗。掃描範圍為目前 Git 暫存區。自我測試使用臨時倉庫和合成資料。
 
-CI 執行相同命令與測試。MOB-001 提供 `tools/contract_lock.py` 後，CI 會以固定 SHA 將 Yuki 和 Yuki-Desktop 檢出到 runner 上的獨立目錄，再匯出 Yuki 原始碼副本執行相容檢查。MOB-002 提供 `android/gradlew` 後，CI 會建置 debug APK。iOS 建置在本機 Xcode 執行。
+CI 執行相同命令與測試。MOB-001 提供 `tools/contract_lock.py` 後，CI 會以固定 SHA 將 Yuki 和 Yuki-Desktop 檢出到 runner 上的獨立目錄，再匯出 Yuki 原始碼副本執行相容檢查。MOB-002 提供 `android/gradlew` 後，CI 會建置 debug APK。
+
+## 本機故障驗收與 HTTPS 入口
+
+將固定 Yuki `6cf15321` 匯出到倉庫外的 APFS 目錄，並在匯出目錄的 `.yuki-commit` 記錄完整 SHA。令 `YUKI_BACKEND_TEST_ROOT` 指向該目錄，`YUKI_BACKEND_TEST_PYTHON` 指向以固定依賴安裝的 Python 3.12 虛擬環境。
+
+```sh
+python3 acceptance/run.py --case smoke --client reference --server reference --output acceptance/out/smoke
+python3 tools/redact_evidence.py acceptance/out/smoke/run-manifest.json acceptance/out/smoke/public-manifest.json
+```
+
+查閱 `harness-smoke.json` 的原請求回執、retry 查找時序及上游轉發計數。此命令啟動隔離後端和本機代理，結束時清理測試環境。多個案例的 `run-summary.json` 列出各案狀態，要分享證據時使用各案例的 `run-manifest.json`。
+
+將固定 HTTPS 主機的反向隧道接到本機手機代理。以下用 18770。入口允許登記的測試來源，從根路徑轉送並保留 `/role/test` 前綴。Android 以普通 HTTPS 連線。
+
+```sh
+python3 acceptance/run.py serve --server reference --port 18770
+```
+
+在另一個終端驗證同一個 HTTPS base URL。以環境變數提供 URL，保留路徑前綴。
+
+```sh
+python3 acceptance/run.py env-check --public-url "$YUKI_DEVICE_TEST_URL" --output acceptance/out/host-endpoint
+```
+
+`device-endpoint.json` 記錄 Python 預設信任鏈、`/meta`、測試控制路徑及非公開路徑的 HTTP 結果。缺少可用入口時回傳非零並記為 `blocked`。MOB-002 記錄 Android 真機的 Wi-Fi 和行動網路初驗。MOB-008/2 用最終簽名 APK 複驗。
 
 ## 在外接非 APFS 卷開發
 
@@ -52,11 +77,3 @@ mkdir -p "$YUKI_MOBILE_BUILD_ROOT"
 ```
 
 Android 專案建好後，依 MOB-002 提供的設定入口，把各模組的 Gradle `buildDir` 指到本機 APFS 下的獨立目錄。
-
-iOS 專案建好後，同時指定 Xcode 的 `DerivedData` 與 `SYMROOT`。將產物寫在 APFS 可避免外接卷的 AppleDouble 資源分叉導致 `codesign` 報 `detritus not allowed`。
-
-```sh
-xcodebuild -project ios/YukiMobile.xcodeproj -scheme YukiMobile \
-  -derivedDataPath "$YUKI_MOBILE_BUILD_ROOT/DerivedData" \
-  "SYMROOT=$YUKI_MOBILE_BUILD_ROOT/Products" build
-```

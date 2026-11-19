@@ -24,6 +24,9 @@ jobs:
       - name: Test repository checks and evidence redaction
         run: python3 tools/redact_evidence.py --self-test
 
+      - name: Test acceptance runner and fault proxy
+        run: PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/tests -p 'test_acceptance_*.py'
+
       - name: Check out pinned Yuki
         if: ${{ hashFiles('yuki-mobile/tools/contract_lock.py') != '' }}
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd

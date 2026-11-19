@@ -1,0 +1,102 @@
+{
+  "vectors": [
+    {
+      "id": "message-no-attachments",
+      "operation": "message",
+      "target": "conversation-fixture",
+      "payload": {
+        "text": "Hello, Yuki!",
+        "attachments": []
+      },
+      "payload_hash": "652db260b91fb3103cf49fe8640585ff3afb4904aadd579a69b59e3afb6b8631"
+    },
+    {
+      "id": "message-with-attachments-and-target",
+      "operation": "message",
+      "target": "conversation-fixture",
+      "payload": {
+        "text": "\u00e9 \ud83d\ude00\u007f",
+        "attachments": [
+          "media-fixture-b",
+          "media-fixture-a"
+        ],
+        "agent_target": {
+          "device_id": "device-fixture",
+          "session_id": "session-fixture",
+          "intent": "prompt"
+        }
+      },
+      "payload_hash": "1885d99ed06707f6406d72bddcd8d17f404cbbe9237aead787b5d6d824d7701c"
+    },
+    {
+      "id": "work-input",
+      "operation": "client.work_input",
+      "target": "work-fixture",
+      "payload": {
+        "text": "\u00e9 \ud83d\ude00\u001c\u001d\u001e\u001f\u0085\u00a0\ufeff"
+      },
+      "payload_hash": "c69099a9454425818808002cc0308b05f9870f93de4056dd8428ea9585940a98"
+    },
+    {
+      "id": "work-input-with-target",
+      "operation": "client.work_input",
+      "target": "work-fixture",
+      "payload": {
+        "text": "\u00e9 \ud83d\ude00\u001c\u001d\u001e\u001f\u0085\u00a0\ufeff",
+        "agent_target": {
+          "device_id": "device-fixture",
+          "session_id": "session-fixture",
+          "intent": "prompt"
+        }
+      },
+      "payload_hash": "2ed6046d39550117fe01b7dcaf253ca5fbf39c6386ad9c4b61999b877e3d9e67"
+    },
+    {
+      "id": "work-cancel",
+      "operation": "client.work_cancel",
+      "target": "work-fixture",
+      "payload": {
+        "expected_revision": 7
+      },
+      "payload_hash": "50b380a7aa37ba536fe38ca10b5c91f4cfad520e8332a1cc6d6f07aefea6efc3"
+    },
+    {
+      "id": "upload",
+      "operation": "client.upload",
+      "target": "person-fixture",
+      "payload": {
+        "filename": "\u00e9\ud83d\ude00.txt\u00a0",
+        "kind": "file",
+        "sha256": "45ab3da4d6ec63db9109edbcfc34fc446f2bff1e68826b774675f32ea9126ba7",
+        "size": 28
+      },
+      "payload_hash": "3339a0f1b7609c0f6a7724ffbb9964b1dac7f2d52ccbabe57aecc8b9be032439"
+    },
+    {
+      "id": "device-revoke",
+      "operation": "client.revoke",
+      "target": "device-fixture",
+      "payload": {},
+      "payload_hash": "d009457b9e5c84570107b0d00ef4a366f42f5758d8a51840dd0599800af53b31"
+    },
+    {
+      "id": "chat-link-code",
+      "operation": "client.link_code",
+      "target": "person-fixture",
+      "payload": {
+        "source_binding_id": "binding-fixture"
+      },
+      "payload_hash": "395e37ea2ef079b2b0c8b06a4bb108562c253cc2f3b7a1a3d2056306c8d8ecff"
+    },
+    {
+      "id": "connector-link-code",
+      "operation": "client.link_code",
+      "target": "person-fixture",
+      "payload": {
+        "source_binding_id": "binding-fixture",
+        "purpose": "connector"
+      },
+      "payload_hash": "3e1beff76c898e78313cbeda7fc18c54db423bef9bf884f9ec1c983f203adaaa"
+    }
+  ]
+}

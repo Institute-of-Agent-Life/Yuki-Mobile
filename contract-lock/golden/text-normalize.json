@@ -1,0 +1,74 @@
+{
+  "vectors": [
+    {
+      "id": "ascii",
+      "input": " \t\r\nHello, Yuki!\n\f\u000b ",
+      "normalized": "Hello, Yuki!"
+    },
+    {
+      "id": "accent",
+      "input": " \u00e9 e\u0301 ",
+      "normalized": "\u00e9 e\u0301"
+    },
+    {
+      "id": "emoji",
+      "input": "\u00a0\ud83d\ude00\u0085",
+      "normalized": "\ud83d\ude00"
+    },
+    {
+      "id": "u007f-retained",
+      "input": " \u007fexample\u007f ",
+      "normalized": "\u007fexample\u007f"
+    },
+    {
+      "id": "u00a0-stripped",
+      "input": "\u00a0example\u00a0",
+      "normalized": "example"
+    },
+    {
+      "id": "u0085-stripped",
+      "input": "\u0085example\u0085",
+      "normalized": "example"
+    },
+    {
+      "id": "u001c-stripped",
+      "input": "\u001cexample\u001c",
+      "normalized": "example"
+    },
+    {
+      "id": "u001d-stripped",
+      "input": "\u001dexample\u001d",
+      "normalized": "example"
+    },
+    {
+      "id": "u001e-stripped",
+      "input": "\u001eexample\u001e",
+      "normalized": "example"
+    },
+    {
+      "id": "u001f-stripped",
+      "input": "\u001fexample\u001f",
+      "normalized": "example"
+    },
+    {
+      "id": "ufeff-retained",
+      "input": " \ufeffexample\ufeff ",
+      "normalized": "\ufeffexample\ufeff"
+    },
+    {
+      "id": "interior-retained",
+      "input": " \u00a0A\u001c\u001d\u001e\u001f\u0085\u00a0B ",
+      "normalized": "A\u001c\u001d\u001e\u001f\u0085\u00a0B"
+    },
+    {
+      "id": "all-whitespace",
+      "input": "\u001c\u001d\u001e\u001f\u0085\u00a0",
+      "normalized": ""
+    },
+    {
+      "id": "empty",
+      "input": "",
+      "normalized": ""
+    }
+  ]
+}

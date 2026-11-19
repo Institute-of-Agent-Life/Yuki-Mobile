@@ -1,0 +1,24 @@
+{
+  "backend": {
+    "repository": "https://github.com/YuanYeYouTao/Yuki",
+    "commit": "6cf15321575391f217d1c9129e6f56e0010b09b9",
+    "serverVersion": "4.0.2",
+    "apiRevision": 14,
+    "pathCount": 58,
+    "file": "client-api.openapi.json",
+    "sha256": "51cda8dd37e0aea3105446281bf6d2e03ba49169cb4bdaf212471ea9205d1d02"
+  },
+  "desktop": {
+    "repository": "https://github.com/Institute-of-Agent-Life/Yuki-Desktop",
+    "commit": "a5687a66cf74485c94394e1008ddfbc0ebd926a2",
+    "backendCommit": "df133fbcb638c508041554a083c42c9aaee390b1",
+    "apiRevision": 12,
+    "requiredApiRevision": 11,
+    "pathCount": 56,
+    "sha256": "14fd970b86a2ef393e1abec1aaae3aa56961304875af35454b000b2e8b98c101"
+  },
+  "golden": {
+    "golden/payload-hash.json": "8cd04c63bcff863888337dea836ab9979165ec6fe444c957feaa38dba738319d",
+    "golden/text-normalize.json": "51d3719d6e6ea9b0d785bc38fd362c6faf60754a4ff835339dfb99108f885668"
+  }
+}

@@ -1,0 +1,61 @@
+name: CI
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: yuki-mobile
+    steps:
+      - name: Check out Yuki-Mobile
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          path: yuki-mobile
+          persist-credentials: false
+
+      - name: Check the Git index
+        run: python3 tools/check_repo.py
+
+      - name: Test repository checks and evidence redaction
+        run: python3 tools/redact_evidence.py --self-test
+
+      - name: Check out pinned Yuki
+        if: ${{ hashFiles('yuki-mobile/tools/contract_lock.py') != '' }}
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          repository: YuanYeYouTao/Yuki
+          ref: 6cf15321575391f217d1c9129e6f56e0010b09b9
+          path: yuki
+          persist-credentials: false
+
+      - name: Check out pinned Yuki-Desktop
+        if: ${{ hashFiles('yuki-mobile/tools/contract_lock.py') != '' }}
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          repository: Institute-of-Agent-Life/Yuki-Desktop
+          ref: a5687a66cf74485c94394e1008ddfbc0ebd926a2
+          path: yuki-desktop
+          persist-credentials: false
+
+      - name: Check locked API contracts
+        if: ${{ hashFiles('yuki-mobile/tools/contract_lock.py') != '' }}
+        shell: bash
+        env:
+          YUKI_BACKEND_TEST_ROOT: ${{ runner.temp }}/yuki-backend
+          YUKI_SOURCE_ROOT: ${{ github.workspace }}/yuki
+          YUKI_DESKTOP_ROOT: ${{ github.workspace }}/yuki-desktop
+        run: |
+          mkdir -p "$YUKI_BACKEND_TEST_ROOT"
+          git -C "$YUKI_SOURCE_ROOT" archive HEAD | tar -x -C "$YUKI_BACKEND_TEST_ROOT"
+          git -C "$YUKI_SOURCE_ROOT" rev-parse HEAD > "$YUKI_BACKEND_TEST_ROOT/.yuki-commit"
+          python3 tools/contract_lock.py check --desktop-root "$YUKI_DESKTOP_ROOT"
+
+      - name: Build the Android debug APK
+        if: ${{ hashFiles('yuki-mobile/android/gradlew') != '' }}
+        working-directory: yuki-mobile/android
+        run: ./gradlew assembleDebug

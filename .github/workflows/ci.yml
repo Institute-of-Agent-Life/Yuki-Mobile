@@ -54,6 +54,7 @@ jobs:
           git -C "$YUKI_SOURCE_ROOT" archive HEAD | tar -x -C "$YUKI_BACKEND_TEST_ROOT"
           git -C "$YUKI_SOURCE_ROOT" rev-parse HEAD > "$YUKI_BACKEND_TEST_ROOT/.yuki-commit"
           python3 tools/contract_lock.py check --desktop-root "$YUKI_DESKTOP_ROOT"
+          PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools/tests -p 'test_contract_lock.py'
 
       - name: Build the Android debug APK
         if: ${{ hashFiles('yuki-mobile/android/gradlew') != '' }}

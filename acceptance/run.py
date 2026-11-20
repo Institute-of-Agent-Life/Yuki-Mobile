@@ -240,6 +240,37 @@ def smoke_case(args, output, command):
     )
 
 
+def desktop_handoff_case(args, output, command):
+    from acceptance.cases.desktop_handoff import run_desktop_handoff
+
+    if args.server == "mobile-fixture":
+        observations, commit = run_desktop_handoff(output)
+    else:
+        observations = {"status": "blocked", "reason": "Desktop handoff requires the QA-002 mobile fixture."}
+        commit = None
+    if "input_replay" in observations:
+        observations["fault_point"] = "drop-after-upstream"
+    status = observations["status"]
+    write_json(output / "desktop-handoff.json", observations)
+    evidence = ["desktop-handoff.json"]
+    if "screenshot_path" in observations:
+        evidence.append(observations["screenshot_path"])
+    report = manifest(
+        "desktop-handoff", args, command, status=status, observations=observations, commit=commit,
+        steps=("Pair Desktop and send after fixture arming", "Verify the waiting Work after Desktop quits",
+               "Verify the phone pairing receipt before input", "Recover and independently replay the input",
+               "Reopen Desktop and compare original artifact bytes"),
+        expected=("Original Work, exactly one new result and matching original SHA-256 from both clients",),
+        evidence=evidence,
+        limits=("Desktop-side reference self-check with a scripted local fixture. Android A01 is recorded separately.",),
+    )
+    report["desktop_commit"] = observations.get("desktop_commit")
+    report["entry_kind"] = "app"
+    if "desktop_pair" in observations:
+        report["test_entry_alias"] = "entry-1"
+    return report
+
+
 def run_cases(args, output):
     requested = args.case.split(",")
     cases = list(dict.fromkeys(
@@ -255,6 +286,8 @@ def run_cases(args, output):
         ])
         if case_id == "smoke" and args.client == "reference":
             evidence = smoke_case(args, directory, command)
+        elif case_id == "desktop-handoff" and args.client == "reference":
+            evidence = desktop_handoff_case(args, directory, command)
         else:
             reason = "the requested case or client belongs to a later acceptance card"
             evidence = manifest(case_id, args, command, status="not_run", observations={"reason": reason},
